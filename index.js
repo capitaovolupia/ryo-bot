@@ -15,6 +15,13 @@ client.on('ready', () => {
 
 // Create an event listener for messages
 client.on('message', message => {
+  
+    // se o bot receber uma mensagem de outro bot, ignorar. Isso previne loop infinitos.
+    if(message.author.bot) {
+        console.log("recebida mensagem de um bot. Ignorando.")
+        return;
+    }
+  
   if (message.content.toLowerCase().includes("daddy help")) {
     message.react(config.bracao);
     message.channel.send("AGUENTE FIRME ESTOU INDO!");
